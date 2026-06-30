@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salesbrite — Never Miss Another Job Call Again | AI Systems for Trade Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#0A0F1A;
+    --navy-900:#0F1626;
+    --navy-800:#161F35;
+    --navy-700:#222D49;
+    --steel-400:#8A93A6;
+    --steel-200:#C7CCD6;
+    --paper:#F4F2EC;
+    --paper-dim:#E7E3D9;
+    --amber:#FF6A1A;
+    --amber-dim:#D8590F;
+    --green:#1E8A55;
+    --red-line:#C73B2F;
+    --radius:2px;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--navy-950);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  h1,h2,h3{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:0.01em; margin:0; line-height:0.95;}
+  .mono{font-family:'Roboto Mono',monospace; letter-spacing:0.04em;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  button{font-family:inherit; cursor:pointer;}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,242,236,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--paper-dim);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:20px; text-transform:uppercase;}
+  .logo .dot{width:10px; height:10px; background:var(--amber); border-radius:50%;}
+  .nav-links{display:none; gap:32px; font-size:14px; font-weight:600;}
+  .nav-links a{text-decoration:none; opacity:0.75; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--navy-950); color:var(--paper); border:none;
+    padding:11px 20px; font-size:13px; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.03em; border-radius:var(--radius);
+    transition:transform .15s, background .2s;
+  }
+  .nav-cta:hover{background:var(--amber); transform:translateY(-1px);}
+  @media(min-width:880px){ .nav-links{display:flex;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--navy-950); color:var(--paper);
+    position:relative; overflow:hidden;
+    padding:64px 0 80px;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 14px);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative; display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
+  }
+  @media(min-width:960px){ .hero-grid{grid-template-columns:1.1fr 0.9fr; gap:40px;} }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Roboto Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--amber); border:1px solid rgba(255,106,26,0.4); padding:6px 12px; border-radius:999px;
+    margin-bottom:22px; background:rgba(255,106,26,0.06);
+  }
+  .eyebrow::before{content:""; width:6px; height:6px; background:var(--amber); border-radius:50%; animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .hero h1{font-size:clamp(40px,7vw,72px); font-weight:700;}
+  .hero h1 span{color:var(--amber);}
+  .hero p.sub{
+    font-size:18px; line-height:1.6; color:var(--steel-200); max-width:520px; margin:24px 0 32px; font-weight:400;
+  }
+  .cta-row{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn-primary{
+    background:var(--amber); color:var(--navy-950); border:none;
+    padding:16px 28px; font-weight:800; font-size:15px; text-transform:uppercase; letter-spacing:0.02em;
+    border-radius:var(--radius); transition:transform .15s ease, box-shadow .2s ease;
+    box-shadow:0 0 0 0 rgba(255,106,26,0.5);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 20px -6px rgba(255,106,26,0.55);}
+  .btn-secondary{
+    background:transparent; color:var(--paper); border:1px solid rgba(255,255,255,0.3);
+    padding:16px 28px; font-weight:700; font-size:15px; text-transform:uppercase; letter-spacing:0.02em;
+    border-radius:var(--radius); transition:border-color .2s, background .2s;
+  }
+  .btn-secondary:hover{border-color:var(--paper); background:rgba(255,255,255,0.06);}
+  .hero-foot{margin-top:28px; display:flex; gap:22px; flex-wrap:wrap; font-size:13px; color:var(--steel-400);}
+  .hero-foot span{display:flex; align-items:center; gap:7px;}
+  .hero-foot svg{width:14px; height:14px; stroke:var(--green);}
+
+  /* docket visual */
+  .docket{
+    background:var(--paper); color:var(--navy-950);
+    border-radius:4px; padding:22px 22px 26px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.55);
+    position:relative; transform:rotate(1.2deg);
+    border:1px solid var(--paper-dim);
+  }
+  .docket::before, .docket::after{
+    content:""; position:absolute; top:0; bottom:0; width:18px;
+    background-image: radial-gradient(circle, var(--navy-950) 3.5px, transparent 3.6px);
+    background-size:18px 18px; background-position:center;
+  }
+  .docket::before{left:-9px;}
+  .docket::after{right:-9px;}
+  .docket-head{display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px dashed var(--paper-dim); padding-bottom:14px; margin-bottom:14px;}
+  .docket-head h3{font-size:20px;}
+  .docket-id{font-family:'Roboto Mono',monospace; font-size:11px; color:var(--steel-400);}
+  .status-pill{
+    font-family:'Roboto Mono',monospace; font-size:11px; font-weight:600; text-transform:uppercase;
+    padding:5px 10px; border-radius:3px; letter-spacing:0.05em;
+    transition:all .4s ease;
+  }
+  .status-pill.ringing{background:#FFE9DA; color:var(--amber-dim);}
+  .status-pill.answered{background:#FFE9DA; color:var(--amber-dim);}
+  .status-pill.booked{background:#DEF3E5; color:var(--green);}
+  .docket-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--paper-dim); font-size:14px;}
+  .docket-row .label{color:var(--steel-400); font-family:'Roboto Mono',monospace; font-size:11px; text-transform:uppercase;}
+  .docket-row .val{font-weight:600; opacity:0; transform:translateY(4px); transition:all .35s ease;}
+  .docket-row .val.show{opacity:1; transform:translateY(0);}
+  .docket-stamp{
+    position:absolute; right:18px; bottom:18px; border:3px solid var(--green); color:var(--green);
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; text-transform:uppercase;
+    padding:6px 14px; border-radius:4px; transform:rotate(-8deg) scale(0); letter-spacing:0.05em;
+    transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  .docket-stamp.show{transform:rotate(-8deg) scale(1);}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:84px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-tag{font-family:'Roboto Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--amber-dim); margin-bottom:12px; display:block;}
+  .section-head h2{font-size:clamp(30px,4.5vw,46px); font-weight:700;}
+  .section-head p{font-size:17px; color:#4A4F5C; margin-top:16px; line-height:1.6;}
+
+  /* ---------- PROBLEM ---------- */
+  .problem{background:var(--paper);}
+  .problem-grid{display:grid; grid-template-columns:1fr; gap:1px; background:var(--navy-950); border:1px solid var(--navy-950);}
+  @media(min-width:760px){ .problem-grid{grid-template-columns:repeat(3,1fr);} }
+  .problem-card{background:var(--paper); padding:32px 28px; position:relative;}
+  .problem-card .num{font-family:'Roboto Mono',monospace; font-size:12px; color:var(--red-line); margin-bottom:18px; display:block;}
+  .problem-card h3{font-size:23px; font-weight:600; margin-bottom:12px; text-transform:none; font-family:'Inter',sans-serif;}
+  .problem-card p{font-size:15px; color:#4A4F5C; line-height:1.6; margin:0;}
+  .problem-card .loss{margin-top:18px; font-family:'Roboto Mono',monospace; font-size:13px; color:var(--red-line); border-top:1px solid var(--paper-dim); padding-top:14px;}
+
+  /* ---------- SOLUTION ---------- */
+  .solution{background:var(--navy-950); color:var(--paper);}
+  .solution .section-head p{color:var(--steel-200);}
+  .solution-grid{display:grid; grid-template-columns:1fr; gap:18px;}
+  @media(min-width:700px){ .solution-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(min-width:1040px){ .solution-grid{grid-template-columns:repeat(4,1fr);} }
+  .sol-card{
+    background:var(--navy-900); border:1px solid var(--navy-700); padding:26px 22px; border-radius:3px;
+    transition:border-color .25s, transform .25s;
+  }
+  .sol-card:hover{border-color:var(--amber); transform:translateY(-4px);}
+  .sol-card .ico{width:38px; height:38px; margin-bottom:18px; stroke:var(--amber); fill:none; stroke-width:1.6;}
+  .sol-card h3{font-size:18px; font-weight:600; text-transform:none; font-family:'Inter',sans-serif; margin-bottom:8px;}
+  .sol-card p{font-size:14px; color:var(--steel-400); line-height:1.55; margin:0;}
+
+  /* ---------- BENEFITS ---------- */
+  .benefits{background:var(--paper);}
+  .benefit-list{display:grid; grid-template-columns:1fr; gap:0; border-top:1px solid var(--navy-950);}
+  .benefit-row{
+    display:grid; grid-template-columns:1fr; gap:14px; padding:28px 0; border-bottom:1px solid var(--paper-dim);
+    align-items:center;
+  }
+  @media(min-width:760px){ .benefit-row{grid-template-columns:60px 1fr 1.4fr;} }
+  .benefit-row .mark{font-family:'Barlow Condensed',sans-serif; font-size:34px; font-weight:700; color:var(--amber);}
+  .benefit-row h3{font-size:21px; font-weight:600; text-transform:none; font-family:'Inter',sans-serif;}
+  .benefit-row p{font-size:15px; color:#4A4F5C; margin:0; line-height:1.6;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{background:var(--navy-950); color:var(--paper); position:relative;}
+  .how .section-head p{color:var(--steel-200);}
+  .steps{display:grid; grid-template-columns:1fr; gap:36px; position:relative;}
+  @media(min-width:840px){ .steps{grid-template-columns:repeat(3,1fr);} }
+  .step{position:relative; padding-top:8px;}
+  .step .step-no{
+    font-family:'Roboto Mono',monospace; font-size:13px; color:var(--amber); margin-bottom:14px; display:block;
+  }
+  .step-line{height:1px; background:linear-gradient(90deg,var(--amber),transparent); margin-bottom:18px;}
+  .step h3{font-size:22px; font-weight:600; text-transform:none; font-family:'Inter',sans-serif; margin-bottom:10px;}
+  .step p{font-size:14.5px; color:var(--steel-400); line-height:1.6;}
+  .arrow{display:none; position:absolute; top:46px; right:-26px; color:var(--steel-400); font-size:20px;}
+  @media(min-width:840px){ .step:not(:last-child) .arrow{display:block;} }
+
+  /* ---------- EXAMPLE SCENARIO ---------- */
+  .scenario{background:var(--paper-dim);}
+  .scenario-card{
+    background:var(--paper); border:1px solid var(--navy-950); border-radius:3px; padding:0; overflow:hidden;
+    display:grid; grid-template-columns:1fr; 
+  }
+  @media(min-width:860px){ .scenario-card{grid-template-columns:1fr 1fr;} }
+  .scenario-label{
+    background:var(--navy-950); color:var(--amber); font-family:'Roboto Mono',monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase; padding:8px 16px; display:inline-block; margin:18px 18px 0;
+  }
+  .scenario-body{padding:18px 28px 30px;}
+  .scenario-body h3{font-size:24px; font-weight:700; text-transform:none; font-family:'Inter',sans-serif; margin-bottom:14px;}
+  .scenario-body p{font-size:15px; color:#4A4F5C; line-height:1.65; margin-bottom:10px;}
+  .scenario-stats{padding:18px 28px 30px; border-top:1px solid var(--paper-dim); display:flex; flex-direction:column; gap:0;}
+  @media(min-width:860px){ .scenario-stats{border-top:none; border-left:1px dashed var(--paper-dim); justify-content:center;} }
+  .stat-line{display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--paper-dim); font-size:14px;}
+  .stat-line .k{color:#4A4F5C;}
+  .stat-line .v{font-family:'Roboto Mono',monospace; font-weight:600;}
+  .stat-line .v.up{color:var(--green);}
+  .stat-line .v.down{color:var(--red-line);}
+
+  /* ---------- BEFORE/AFTER SLIDER ---------- */
+  .compare-wrap{background:var(--navy-950); color:var(--paper);}
+  .slider-box{
+    position:relative; max-width:760px; margin:0 auto; border-radius:4px; overflow:hidden;
+    border:1px solid var(--navy-700); user-select:none;
+  }
+  .slider-track{position:relative; height:380px;}
+  .panel{position:absolute; inset:0; padding:34px 30px; display:flex; flex-direction:column; justify-content:center;}
+  .panel.before{background:var(--navy-900);}
+  .panel.after{background:#10261B; clip-path:inset(0 0 0 50%);}
+  .panel .ptag{font-family:'Roboto Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px;}
+  .panel.before .ptag{color:var(--red-line);}
+  .panel.after .ptag{color:var(--green);}
+  .panel ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px;}
+  .panel li{font-size:15px; display:flex; gap:10px; align-items:flex-start; color:var(--steel-200);}
+  .panel li::before{content:"—"; opacity:0.5; flex-shrink:0;}
+  .slider-handle{
+    position:absolute; top:0; bottom:0; width:3px; background:var(--amber); left:50%; transform:translateX(-50%);
+    cursor:ew-resize; z-index:5;
+  }
+  .slider-handle::after{
+    content:"⇆"; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:42px; height:42px; background:var(--amber); color:var(--navy-950); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700;
+    box-shadow:0 4px 14px rgba(0,0,0,0.4);
+  }
+  input[type=range].compare-input{
+    position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; z-index:6;
+  }
+  .slider-labels{display:flex; justify-content:space-between; margin-top:14px; font-family:'Roboto Mono',monospace; font-size:12px; color:var(--steel-400);}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--paper);}
+  .contact-grid{display:grid; grid-template-columns:1fr; gap:44px;}
+  @media(min-width:900px){ .contact-grid{grid-template-columns:0.9fr 1.1fr;} }
+  .contact-info h2{font-size:clamp(28px,4vw,40px); margin-bottom:18px;}
+  .contact-info p{font-size:16px; color:#4A4F5C; line-height:1.65; margin-bottom:28px;}
+  .contact-method{
+    display:flex; align-items:center; gap:14px; padding:16px 0; border-top:1px solid var(--paper-dim);
+  }
+  .contact-method:last-child{border-bottom:1px solid var(--paper-dim);}
+  .contact-method svg{width:20px; height:20px; stroke:var(--amber-dim); flex-shrink:0;}
+  .contact-method a{text-decoration:none; font-weight:600; font-size:15px;}
+  .contact-method .ctxt{font-size:13px; color:#4A4F5C; display:block; margin-top:2px;}
+
+  form.lead{background:var(--navy-950); color:var(--paper); padding:34px; border-radius:4px;}
+  form.lead h3{font-size:22px; font-weight:600; text-transform:none; font-family:'Inter',sans-serif; margin-bottom:6px;}
+  form.lead > p{font-size:14px; color:var(--steel-400); margin:0 0 24px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-family:'Roboto Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--steel-400); margin-bottom:8px;}
+  .field input, .field select, .field textarea{
+    width:100%; background:var(--navy-900); border:1px solid var(--navy-700); color:var(--paper);
+    padding:13px 14px; font-size:15px; border-radius:3px; font-family:'Inter',sans-serif;
+    transition:border-color .2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none; border-color:var(--amber);}
+  .field textarea{resize:vertical; min-height:90px;}
+  .submit-btn{
+    width:100%; background:var(--amber); color:var(--navy-950); border:none; padding:16px;
+    font-weight:800; font-size:15px; text-transform:uppercase; letter-spacing:0.02em; border-radius:3px;
+    transition:background .2s, transform .15s;
+  }
+  .submit-btn:hover{background:#FF8242; transform:translateY(-1px);}
+  .form-success{display:none; text-align:center; padding:30px 10px;}
+  .form-success.show{display:block;}
+  .form-success svg{width:42px; height:42px; stroke:var(--green); margin:0 auto 16px;}
+  .form-success h3{margin-bottom:8px;}
+  .form-success p{color:var(--steel-400); font-size:14px;}
+
+  footer{background:var(--navy-950); color:var(--steel-400); padding:36px 0; font-size:13px;}
+  .footer-row{display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px; align-items:center;}
+  .footer-row a{text-decoration:none; color:var(--steel-200);}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="wrap nav">
+    <div class="logo"><span class="dot"></span>SALESBRITE</div>
+    <div class="nav-links">
+      <a href="#problem">The Problem</a>
+      <a href="#solution">The System</a>
+      <a href="#how">How It Works</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView()">Book a Demo</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow">Built for UK trade businesses</span>
+      <h1>Never miss<br>another job<br><span>call again.</span></h1>
+      <p class="sub">Most trade businesses lose jobs every week to missed calls, slow quotes, and admin that piles up after hours. We install an AI system that answers the phone, books the job, and sends the confirmation — before the customer rings your competitor.</p>
+      <div class="cta-row">
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView()">Book a Demo</button>
+        <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView()">See How It Works</button>
+      </div>
+      <div class="hero-foot">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>No long-term lock-in</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Set up around your existing number</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>UK-based support</span>
+      </div>
+    </div>
+
+    <div class="docket-wrap reveal in">
+      <div class="docket" id="docket">
+        <div class="docket-head">
+          <div>
+            <h3>Job Docket</h3>
+            <div class="docket-id mono" id="docketId">#JD-0000</div>
+          </div>
+          <div class="status-pill ringing" id="statusPill">Incoming call</div>
+        </div>
+        <div class="docket-row"><span class="label">Caller</span><span class="val" id="vCaller">—</span></div>
+        <div class="docket-row"><span class="label">Issue</span><span class="val" id="vIssue">—</span></div>
+        <div class="docket-row"><span class="label">Address</span><span class="val" id="vAddress">—</span></div>
+        <div class="docket-row"><span class="label">Slot offered</span><span class="val" id="vSlot">—</span></div>
+        <div class="docket-row" style="border-bottom:none;"><span class="label">Confirmation</span><span class="val" id="vConfirm">—</span></div>
+        <div class="docket-stamp" id="stamp">Booked</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem" id="problem">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">The problem</span>
+      <h2>Every missed call is a job that walks to someone else.</h2>
+      <p>None of this is unusual — it's the default state of a busy trade business. The cost just doesn't show up on an invoice.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <span class="num mono">01</span>
+        <h3>Missed calls = lost jobs</h3>
+        <p>You're on a roof, under a sink, or mid-install. The phone rings out. The caller doesn't leave a voicemail — they call the next number on the search results page instead.</p>
+        <div class="loss">Most calls to trade businesses go unanswered during working hours.</div>
+      </div>
+      <div class="problem-card reveal">
+        <span class="num mono">02</span>
+        <h3>Slow quoting = lost customers</h3>
+        <p>A customer asks three tradespeople for a quote. Whoever replies first, with a clear price and a slot, usually gets the job — regardless of who's actually best.</p>
+        <div class="loss">Response speed often matters more than price.</div>
+      </div>
+      <div class="problem-card reveal">
+        <span class="num mono">03</span>
+        <h3>Admin overload = wasted time</h3>
+        <p>Evenings and weekends go on calling people back, chasing details, and rebuilding the diary by hand — time that should be billable or off the clock entirely.</p>
+        <div class="loss">Hours spent on admin instead of paid work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solution" id="solution">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag" style="color:var(--amber);">The system</span>
+      <h2>One system, four jobs done automatically.</h2>
+      <p>It sits behind your existing phone number and works the same whether it's 9am or midnight, weekday or bank holiday.</p>
+    </div>
+    <div class="solution-grid">
+      <div class="sol-card reveal">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <h3>Answers calls automatically</h3>
+        <p>Picks up every call instantly, greets the customer in a natural voice, and never sends a job to voicemail.</p>
+      </div>
+      <div class="sol-card reveal">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <h3>Captures job details</h3>
+        <p>Asks the right questions for the trade — fault, location, access, urgency — and writes it all down accurately.</p>
+      </div>
+      <div class="sol-card reveal">
+        <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <h3>Books appointments</h3>
+        <p>Checks your live availability and slots the job straight into the diary — no double bookings, no back-and-forth.</p>
+      </div>
+      <div class="sol-card reveal">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <h3>Sends confirmations</h3>
+        <p>Texts the customer their appointment time and details immediately, so they're not left wondering if it actually went through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits" id="benefits">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">The outcome</span>
+      <h2>What changes operationally</h2>
+      <p>This isn't about doing more marketing. It's about not losing the jobs you're already being called for.</p>
+    </div>
+    <div class="benefit-list">
+      <div class="benefit-row reveal">
+        <span class="mark mono">A</span>
+        <h3>More booked jobs</h3>
+        <p>Calls that used to go to voicemail get answered and booked instead, so fewer enquiries fall through the cracks.</p>
+      </div>
+      <div class="benefit-row reveal">
+        <span class="mark mono">B</span>
+        <h3>Less admin workload</h3>
+        <p>Job details arrive already written up and slotted into the diary, instead of being pieced together from missed-call notes.</p>
+      </div>
+      <div class="benefit-row reveal">
+        <span class="mark mono">C</span>
+        <h3>Faster response than competitors</h3>
+        <p>Customers get an answer and a booked slot in minutes rather than waiting for a callback that may or may not come.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag" style="color:var(--amber);">How it works</span>
+      <h2>Three steps, start to finish</h2>
+      <p>This is the actual sequence — there's no extra step where the customer waits on you.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-no mono">STEP 01</span>
+        <div class="step-line"></div>
+        <h3>Call comes in</h3>
+        <p>A customer calls your usual number, any time of day. The system picks up immediately — no rings, no hold music.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="step reveal">
+        <span class="step-no mono">STEP 02</span>
+        <div class="step-line"></div>
+        <h3>AI handles it and collects details</h3>
+        <p>It talks the customer through the issue, gets the address and access details, and checks what level of job it is.</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="step reveal">
+        <span class="step-no mono">STEP 03</span>
+        <div class="step-line"></div>
+        <h3>Job is booked automatically</h3>
+        <p>A slot is confirmed against your real availability, the job lands in your diary, and the customer gets a text confirmation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scenario" id="scenario">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag">Example scenario</span>
+      <h2>What this looks like for a typical business</h2>
+      <p>This is an illustrative example to show how the numbers might move — not a real client and not a guaranteed result.</p>
+    </div>
+    <div class="scenario-card reveal">
+      <div>
+        <span class="scenario-label">Example scenario — not a real client</span>
+        <div class="scenario-body">
+          <h3>A four-engineer plumbing &amp; heating business</h3>
+          <p>The owner answers calls between jobs but can't get to all of them. Evening and weekend calls mostly went to voicemail, and most callers didn't leave a message.</p>
+          <p>After installing the system, every call gets answered. Routine call-outs and quote requests get booked directly into the diary; anything complex or urgent gets flagged for the owner to call back personally.</p>
+        </div>
+      </div>
+      <div class="scenario-stats">
+        <div class="stat-line"><span class="k">Calls answered</span><span class="v up">Up</span></div>
+        <div class="stat-line"><span class="k">Time on phone admin</span><span class="v down">Down</span></div>
+        <div class="stat-line"><span class="k">Time to first response</span><span class="v down">Down</span></div>
+        <div class="stat-line" style="border-bottom:none;"><span class="k">Owner's evening calls</span><span class="v down">Down</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare-wrap">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-tag" style="color:var(--amber);">Before / after</span>
+      <h2>Drag to compare</h2>
+      <p style="color:var(--steel-200);">A simple way to see what's actually different day-to-day.</p>
+    </div>
+    <div class="slider-box reveal">
+      <div class="slider-track">
+        <div class="panel before">
+          <span class="ptag mono">Before</span>
+          <ul>
+            <li>Calls during jobs go to voicemail</li>
+            <li>Quotes sent hours or days later</li>
+            <li>Diary updated manually, evenings/weekends</li>
+            <li>No record of who called and why</li>
+            <li>Some customers never hear back</li>
+          </ul>
+        </div>
+        <div class="panel after" id="afterPanel">
+          <span class="ptag mono">After</span>
+          <ul>
+            <li>Every call answered, day or night</li>
+            <li>Job details captured on the first call</li>
+            <li>Appointments booked straight into the diary</li>
+            <li>Full written record of every enquiry</li>
+            <li>Confirmation sent automatically</li>
+          </ul>
+        </div>
+        <div class="slider-handle" id="sliderHandle"></div>
+        <input type="range" class="compare-input" id="compareRange" min="0" max="100" value="50">
+      </div>
+      <div class="slider-labels"><span>← Drag</span><span>Current setup vs. with the system installed</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <span class="section-tag">Get started</span>
+      <h2>Book a 20-minute demo</h2>
+      <p>We'll walk through how the system would work with your actual phone number, your booking process, and the jobs you take on — no generic pitch deck, no pressure.</p>
+
+      <div class="contact-method">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <div>
+          <a href="mailto:mcferdie@salesbrite.co">mcferdie@salesbrite.co</a>
+          <span class="ctxt">Direct email — usually answered same day</span>
+        </div>
+      </div>
+      <div class="contact-method">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <div>
+          <a href="#contact" onclick="document.getElementById('callBtn').click(); return false;">Book a call slot directly</a>
+          <span class="ctxt">Pick a time that works around your jobs</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <form class="lead" id="leadForm">
+        <h3>Tell us about your business</h3>
+        <p>We'll get back to you to confirm a time.</p>
+
+        <div id="formFields">
+          <div class="field">
+            <label for="name">Full name</label>
+            <input type="text" id="name" name="name" required placeholder="e.g. James Carter">
+          </div>
+          <div class="field">
+            <label for="company">Business name</label>
+            <input type="text" id="company" name="company" required placeholder="e.g. Carter Plumbing &amp; Heating">
+          </div>
+          <div class="field">
+            <label for="trade">Trade</label>
+            <select id="trade" name="trade" required>
+              <option value="" disabled selected>Select your trade</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>HVAC / Heating</option>
+              <option>Locksmith</option>
+              <option>Boiler repair</option>
+              <option>Other trade</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="07xxx xxxxxx">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@yourbusiness.co.uk">
+          </div>
+          <div class="field">
+            <label for="message">What's currently happening with missed calls or admin? (optional)</label>
+            <textarea id="message" name="message" placeholder="A few lines is plenty"></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="callBtn">Book a Demo</button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <h3>Request received</h3>
+          <p>We'll email you within one working day to confirm a time. If it's urgent, reach us directly at <strong>mcferdie@salesbrite.co</strong>.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo" style="font-size:16px;"><span class="dot"></span>SALESBRITE</div>
+    <div>Operational AI systems for UK trade businesses.</div>
+    <a href="mailto:mcferdie@salesbrite.co">mcferdie@salesbrite.co</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Hero docket call-flow animation
+  const docketData = [
+    {id:'#JD-2241', caller:'M. Hughes', issue:'No hot water', address:'14 Elm Road, B1', slot:'Today, 3:30–4:30pm'},
+    {id:'#JD-2242', caller:'S. Patel', issue:'Tripped fuse box', address:'9 Oak Close, M2', slot:'Tomorrow, 9–10am'},
+    {id:'#JD-2243', caller:"R. O'Connor", issue:'Boiler losing pressure', address:'22 Birch Ave, LS3', slot:'Today, 5–6pm'}
+  ];
+  let dIndex = 0;
+  const elPill = document.getElementById('statusPill');
+  const elId = document.getElementById('docketId');
+  const elCaller = document.getElementById('vCaller');
+  const elIssue = document.getElementById('vIssue');
+  const elAddress = document.getElementById('vAddress');
+  const elSlot = document.getElementById('vSlot');
+  const elConfirm = document.getElementById('vConfirm');
+  const elStamp = document.getElementById('stamp');
+
+  function resetDocket(){
+    [elCaller, elIssue, elAddress, elSlot, elConfirm].forEach(e=>e.classList.remove('show'));
+    elStamp.classList.remove('show');
+    elPill.className = 'status-pill ringing';
+    elPill.textContent = 'Incoming call';
+  }
+  function setVal(el, text){ el.textContent = text; requestAnimationFrame(()=>el.classList.add('show')); }
+
+  function runDocketCycle(){
+    const d = docketData[dIndex % docketData.length];
+    dIndex++;
+    resetDocket();
+    elId.textContent = d.id;
+
+    setTimeout(()=>{ elPill.className='status-pill answered'; elPill.textContent='Call answered'; }, 700);
+    setTimeout(()=> setVal(elCaller, d.caller), 1400);
+    setTimeout(()=> setVal(elIssue, d.issue), 2200);
+    setTimeout(()=> setVal(elAddress, d.address), 3000);
+    setTimeout(()=> setVal(elSlot, d.slot), 3800);
+    setTimeout(()=>{ elPill.className='status-pill booked'; elPill.textContent='Job booked'; }, 4500);
+    setTimeout(()=> setVal(elConfirm, 'Text sent ✓'), 4800);
+    setTimeout(()=> elStamp.classList.add('show'), 5200);
+    setTimeout(runDocketCycle, 8200);
+  }
+  runDocketCycle();
+
+  // Before/after slider
+  const range = document.getElementById('compareRange');
+  const afterPanel = document.getElementById('afterPanel');
+  const handle = document.getElementById('sliderHandle');
+  function updateSlider(v){
+    afterPanel.style.clipPath = `inset(0 0 0 ${v}%)`;
+    handle.style.left = v + '%';
+  }
+  range.addEventListener('input', e=> updateSlider(e.target.value));
+  updateSlider(50);
+
+  // Form submission (front-end only, no backend wired up)
+  const form = document.getElementById('leadForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('formFields').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  });
+</script>
+
+</body>
+</html>
